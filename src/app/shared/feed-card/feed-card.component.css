@@ -1,0 +1,7 @@
+@media (min-width: 576px) {
+  .col-sm-1 {
+    flex: 0 0 5.333333%;
+    max-width: 8.333333%;
+  }
+}
+

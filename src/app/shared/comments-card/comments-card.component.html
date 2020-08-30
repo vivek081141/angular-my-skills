@@ -1,0 +1,40 @@
+
+<div class="row" style="margin-left: 10px;">
+  <div class="col-sm-0 mr-1" >
+    <img src="assets/images/cards/vivek.png" class="rounded-circle" style="max-height: 32px">
+  </div>
+  <div class="col-sm-10">
+    <div class="card">
+      <form class="form-inline">
+            <textarea class="form-control form-rounded mb-0 mr-sm-2 col-sm-11" rows="1"
+                      placeholder="Join the discussion">
+            </textarea>
+        <a class="btn btn-default btn-success mr-1"  aria-label="Post" >
+          <i class="fa fa-sign-out-alt fa-fw" aria-hidden="true" ></i>
+        </a>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<div *ngFor="let comment of comments " class="row" style="margin-left: 10px;">
+  <div class="col-sm-0 mr-1" >
+    <img src="assets/images/cards/{{comment.commentedByDP}}" class="rounded-circle" style="max-height: 32px">
+  </div>
+  <div class="col-sm-10">
+    <div class="comment-container rounded">
+        <p class="mb-0 mr-sm-2 col-sm-11">
+          {{comment.comment}}
+          <span class="float-right">{{comment.commentedOn}}</span>
+        </p>
+    </div>
+  </div>
+</div>
+
+
+<div class="comments-container"  >
+
+</div>
+
+
