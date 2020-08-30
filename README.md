@@ -1,27 +1,40 @@
-# AngularMySkills
+Introduction
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.8.
+We would like to mimic a working prototype of Facebook feed.
 
-## Development server
+Core Functionalities:
+1. User login -- Authentication via Fb/Google oAuth.
+2. Create, Update, Delete Feed
+3. Ability for other users to create, update and delete comments on a feed
+4. Users should be able to configure their profile
+5. Admin module where available users and their activities can be seen
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Bonus:
+1. Users to invite other users i.e. send other users a friend request
+2. Ability for Ads to run. These ads will be configured by the administrator
 
-## Code scaffolding
+Application Configuration:
+1. Spring Boot Backend
+2. Web Application in Angular. The web app must be responsive i.e. regardless of what screen we see it, we must see the UI elements in a nice manner.
+3. Design the services using micro service architecture.
+4. Use in memory database H2 or a locally setup MySql is good too.
+5. We want to see a well organized, properly unit tested code.
+6. Maintain a separate folder under resources to document all DDL and DMLs
+7. Create a postman project with a separate folder to test APIs
+8. UI/Mobile app MUST communicate to the backend via a JWT token (Spring Security)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Timeline:
+- The assignment is expected to take about 1-2 weeks to complete but if you can finish it within a week it'll be an extra credit but totally optional.
 
-## Build
+Acceptance:
+- Code must be present in your Github account with proper documentation on how to use it.
+- Once you finish the assignment, share the link of the code and send us an email to schedule a 2 hour interview to review and assess.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+This will be the final technical round and we'll then move on the the last phase of the interview.
 
-## Running unit tests
+Please do not hesitate to reach out to us if you have any questions.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Note: Show your creativity by designing the software in as much user friendly way as possible.
+Document all your assumption.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+We wish you the best for the next round of the interviews.
