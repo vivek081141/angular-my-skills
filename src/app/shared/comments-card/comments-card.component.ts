@@ -25,10 +25,11 @@ export class CommentsCardComponent implements OnInit {
     comment.commentedBy  = this.feedDataService.getLoggedInUser();
     comment.comment = this.myComment;
     this.feedDataService.postComment(comment).subscribe(
-      next => {
+      comments => {
         this.myComment = ''; // making the comment as null
-        this.comments = next;
-        console.log(next);
+        this.comments = comments;
+        this.feed.commentList = comments;
+        console.log(comments);
       },
       error => {
         console.log(error);
