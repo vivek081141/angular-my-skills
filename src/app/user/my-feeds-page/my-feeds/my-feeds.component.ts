@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FeedDataService} from '../../../services/feed-data.service';
 import {Feed} from '../../../models/Feed';
 
@@ -9,17 +9,13 @@ import {Feed} from '../../../models/Feed';
 })
 export class MyFeedsComponent implements OnInit {
 
-  feeds: Feed[] = [];
-  error: string;
+  @Input() feeds: Feed[] = [];
 
   constructor(private feedDataService: FeedDataService) {
   }
 
   ngOnInit(): void {
-    this.feedDataService.getMyPosts('vivek').subscribe(
-      next => this.feeds = next,
-      error => this.error = 'Error has occurred'
-    );
+
   }
 
 }

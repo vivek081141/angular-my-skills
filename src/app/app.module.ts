@@ -13,6 +13,8 @@ import { MyFeedsComponent } from './user/my-feeds-page/my-feeds/my-feeds.compone
 import { FeedCardComponent } from './shared/feed-card/feed-card.component';
 import { AllFeedsComponent } from './user/home/all-feeds/all-feeds.component';
 import { CommentsCardComponent } from './shared/comments-card/comments-card.component';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,12 @@ import { CommentsCardComponent } from './shared/comments-card/comments-card.comp
     CommentsCardComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

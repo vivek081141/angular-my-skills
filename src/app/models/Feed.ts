@@ -1,11 +1,13 @@
 import {User} from './User';
 
 export class Feed {
+  id: number;
   user: User;
+  userId?: number;
   postedDate: string;
   header: string;
-  shortDescription: string;
-  comments?: Comment[];
+  description: string;
+  commentList?: Comment[];
   commentsCount?: number;
   likes?: Like[];
   likesCount?: number;
@@ -13,8 +15,9 @@ export class Feed {
 
 
 export class Comment {
+  feedId: number;
   comment: string;
-  commentedBy: string;
+  commentedBy: number;
   commentedOn: string;
   commentedByDP?: string;
 }

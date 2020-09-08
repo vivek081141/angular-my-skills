@@ -1,39 +1,57 @@
 import {Injectable, OnInit} from '@angular/core';
-import {Feed} from '../models/Feed';
-import {FakeDataService} from './fake-data.service';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Comment, Feed} from '../models/Feed';
+import {MockDataService} from './mock-data.service';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FeedDataService{
 
-  private appName = 'localhost:4211';
+  private appName = 'localhost:8090/feeds';
   private myPostsUrl = this.appName + `/getMyPost`;
-  private myFeedsUrl = this.appName + `/getMyFeeds`;
+  private myFeedsUrl = this.appName + `/getFeeds`;
 
-  constructor(private fakeDataService: FakeDataService, private http: HttpClient) { }
+  constructor(private fakeDataService: MockDataService, private http: HttpClient) { }
 
-  getMyPosts(username: string): Observable<Feed[]> {
-    return this.doHttpGetWithOptions<Feed[]>(`${this.myPostsUrl}?username=${username}`);
-   // return this.fakeDataService.getMyPosts();
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })};
+
+  /* get all my posts + friends and subscriptions **/
+  getMyPosts(userId: number): Observable<Feed[]> {
+     return this.get<Feed[]>(`http://localhost:8090/feeds/getMyPost/${userId}`);
+  }
+
+  /* Get My Feeds **/
+  getMyFeeds(userId: number): Observable<Feed[]> {
+    return this.get<Feed[]>(`http://localhost:8090/feeds/getFeeds/${userId}`);
+  }
+
+  /* post Feed **/
+  postFeed(feed: Feed): Observable<any> {
+    return this.http.post<any>(`http://localhost:8090/feeds/postFeed`, feed, this.httpOptions);
+  }
+
+  /* Post a comment **/
+  postComment(comment: Comment): Observable<Comment[]> {
+    return this.http.post<Comment[]>(`http://localhost:8090/feeds/postComment`, comment, this.httpOptions);
+  }
+
+  /* like a feed **/
+  likeFeed(feed: Feed): Observable<any> {
+    return this.http.put<any>(`http://localhost:8090/feeds/like`, { feedId: feed.id}, this.httpOptions);
+  }
+
+  get<T>(url: string, options?: any): Observable<T> {
+    return this.http.get<T>(url, this.httpOptions);
+  }
+
+  getLoggedInUser(): number {
+    return 100;
   }
 
 
-  getMyFeeds(username: string): Observable<Feed[]> {
-    return this.doHttpGetWithOptions<Feed[]>(`${this.myFeedsUrl}?username=${username}`);
-    // return this.fakeDataService.getMyFeeds();
-  }
-
-
-  doHttpGetWithOptions<T>(url: string, options?: any): Observable<T> {
-    if (options == null) {
-      options = {};
-    }
-    options.observe = 'body';
-
-    // @ts-ignore: Call the get method that returns Observable<Response>
-    return this.http.get<T>(url, options);
-  }
 }

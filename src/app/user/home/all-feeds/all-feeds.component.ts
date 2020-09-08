@@ -15,9 +15,12 @@ export class AllFeedsComponent implements OnInit {
   constructor(private feedDataService: FeedDataService ) { }
 
   ngOnInit(): void {
-    this.feedDataService.getMyFeeds('vivek').subscribe(
+    this.feedDataService.getMyFeeds(this.feedDataService.getLoggedInUser()).subscribe(
       next => this.feeds = next,
-      error => this.error = error.toString()
+      error => {
+        this.error = error.toString();
+        console.log(error);
+      }
     );
   }
 

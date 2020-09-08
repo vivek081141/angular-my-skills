@@ -6,10 +6,10 @@
   <div class="col-sm-10">
     <div class="card">
       <form class="form-inline">
-            <textarea class="form-control form-rounded mb-0 mr-sm-2 col-sm-11" rows="1"
-                      placeholder="Join the discussion">
+            <textarea name="myComment" class="form-control form-rounded mb-0 mr-sm-2 col-sm-11" rows="1"
+                      placeholder="Join the discussion" #comment [(ngModel)]="myComment">{{myComment}}
             </textarea>
-        <a class="btn btn-default btn-success mr-1"  aria-label="Post" >
+        <a class="btn btn-default btn-success mr-1"  [class.disabled]="myComment === ''"  aria-label="Post" (click)="postComment()" >
           <i class="fa fa-sign-out-alt fa-fw" aria-hidden="true" ></i>
         </a>
       </form>

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Comment} from '../../models/Feed';
-import {User} from '../../models/User';
+import {Feed} from '../../models/Feed';
+import {FeedDataService} from '../../services/feed-data.service';
 
 @Component({
   selector: 'app-comments-card',
@@ -9,11 +10,36 @@ import {User} from '../../models/User';
 })
 export class CommentsCardComponent implements OnInit {
   @Input() comments: Comment[];
-  @Input() user: User;
+  @Input() feed: Feed;
+  myComment = '';
 
-  constructor() { }
+
+  constructor(private feedDataService: FeedDataService) { }
 
   ngOnInit(): void {
   }
 
+  postComment(): void {
+    const comment = new Comment();
+    comment.feedId = this.feed.id;
+    comment.commentedBy  = this.feedDataService.getLoggedInUser();
+    comment.comment = this.myComment;
+    this.feedDataService.postComment(comment).subscribe(
+      next => {
+        this.myComment = ''; // making the comment as null
+        this.comments = next;
+        console.log(next);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  disablePost(): any {
+    if (this.myComment){
+      return;
+    }
+    return 'disabled';
+  }
 }

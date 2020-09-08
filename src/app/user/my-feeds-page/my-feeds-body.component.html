@@ -1,7 +1,15 @@
 <!-- This is container for my-post-form and all my feeds -->
 
+<!-- TODO Alert should be in its own container -->
+<div>
+  <ngb-alert *ngIf="alert" type="secondary" (close)="alert = ''">
+    {{ alert }}
+  </ngb-alert>
+</div>
+
+
 <div class="container-fluid m-5">
-  <app-my-post-form></app-my-post-form>
-  <app-my-feeds></app-my-feeds>
+  <app-my-post-form (messageEvent)="postFeed($event)"></app-my-post-form>
+  <app-my-feeds [feeds]="feeds"></app-my-feeds>
 </div>
 

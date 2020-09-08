@@ -1,7 +1,7 @@
 import {Feed} from './Feed';
 
 export class User {
-  username: string;
+  userName: string;
   displayProfile: string;
   feeds?: Feed[] = [];
 }

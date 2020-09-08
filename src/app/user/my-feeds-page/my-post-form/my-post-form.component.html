@@ -1,10 +1,13 @@
 <!-- This section is to enable user to post the message -->
 <!-- TODO Profile Picture along with Post Action, nothing more -->
-<form>
+
+<form #postForm="ngForm"  (ngSubmit)="postFeed()">
   <div class="form-group col-8">
-    <textarea class="form-control form-rounded" rows="3" placeholder="Whats on your mind"></textarea>
+    <textarea  name="name" [(ngModel)]="name" class="form-control form-rounded" rows="3" placeholder="Whats on your mind"  required>
+    </textarea>
+
   </div>
   <div class="form-group col-8">
-    <button type="button" class="btn btn-primary">Post</button>
+    <button type="submit"  class="btn btn-primary" [disabled]="!postForm.form.valid">Post</button>
   </div>
 </form>

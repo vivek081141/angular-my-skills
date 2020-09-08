@@ -4,7 +4,7 @@ import {Feed} from '../models/Feed';
 @Injectable({
   providedIn: 'root'
 })
-export class FakeDataService {
+export class MockDataService {
 
   constructor() { }
 
@@ -14,55 +14,61 @@ export class FakeDataService {
   public getMyPosts(): Feed[] {
     const feeds: Feed[] = [
       {
+        id: 1,
         user: {
-          username: 'Vivek Agrawal',
+          userName: 'Vivek Agrawal',
           displayProfile: 'vivek.png'
         },
         postedDate: '8th August 2020',
         header: 'India vs Australia world cup match',
-        shortDescription: 'India won the match by 5 wickets. Virat Kohli was adjusted man of the match.',
+        description: 'India won the match by 5 wickets. Virat Kohli was adjusted man of the match.',
         commentsCount: 3,
         likesCount: 4,
-        comments: [
+        commentList: [
           {
+            feedId: 1,
             comment: 'Yay, India has won. Thank God!',
-            commentedBy: 'Rahul',
+            commentedBy: 102,
             commentedOn: '10th August',
             commentedByDP: 'brad_pitt_avatar.jpg'
           },
           {
+            feedId: 1,
             comment: 'Virat is a run machine, another trophy for him.',
-            commentedBy: 'BBC',
+            commentedBy: 102,
             commentedOn: '10th August',
             commentedByDP: 'BBC-News-Avatar.png'
           },
           {
+            feedId: 1,
             comment: 'Austria need to win all matches in order to qualify finals.',
-            commentedBy: 'FoxNews',
+            commentedBy: 101,
             commentedOn: '10th August',
             commentedByDP: 'fox-news.jpg'
           }
         ]
       },
       {
+        id: 2,
         user: {
-          username: 'Vivek Agrawal',
+          userName: 'Vivek Agrawal',
           displayProfile: 'vivek.png'
         },
         postedDate: '7th August 2020',
         header: 'Coronavirus: Why Spain is seeing second wave',
-        shortDescription: 'Spain saw one of the most draconian Covid-19 lockdowns in Europe, but two months after it was lifted, the virus is spreading faster than in any neighbouring nation.',
+        description: 'Spain saw one of the most draconian Covid-19 lockdowns in Europe, but two months after it was lifted, the virus is spreading faster than in any neighbouring nation.',
         commentsCount: 2,
         likesCount: 2
       },
       {
+        id: 3,
         user: {
-          username: 'Vivek Agrawal',
+          userName: 'Vivek Agrawal',
           displayProfile: 'vivek.png'
         },
         postedDate: '6th August 2020',
         header: 'Donald Trump to visit Kenosha amid unrest',
-        shortDescription: 'US President Donald Trump is to visit the city in Wisconsin which has seen widespread unrest ' +
+        description: 'US President Donald Trump is to visit the city in Wisconsin which has seen widespread unrest ' +
           'since a black man was shot in the back and seriously injured by a policeman ',
         commentsCount: 8,
         likesCount: 8
@@ -80,35 +86,38 @@ export class FakeDataService {
   getMyFeeds(): Feed[] {
     const feeds: Feed[] = [
       {
+        id: 1,
         user: {
-          username: 'Rahul Gupta',
+          userName: 'Rahul Gupta',
           displayProfile: 'brad_pitt_avatar.jpg'
         },
         postedDate: '8th August 2020',
         header: 'India vs Australia world cup match',
-        shortDescription: 'India won the match by 5 wickets.Virat Kohli was adjusted man of the match.',
+        description: 'India won the match by 5 wickets.Virat Kohli was adjusted man of the match.',
         commentsCount: 8,
         likesCount: 8
       },
       {
+        id: 2,
         user: {
-          username: 'BBC News',
+          userName: 'BBC News',
           displayProfile: 'BBC-News-Avatar.png'
         },
         postedDate: '7th August 2020',
         header: 'Coronavirus: Why Spain is seeing second wave',
-        shortDescription: 'Spain saw one of the most draconian Covid-19 lockdowns in Europe, but two months after it was lifted, the virus is spreading faster than in any neighbouring nation.',
+        description: 'Spain saw one of the most draconian Covid-19 lockdowns in Europe, but two months after it was lifted, the virus is spreading faster than in any neighbouring nation.',
         commentsCount: 2,
         likesCount: 2
       },
       {
+        id: 3,
         user: {
-          username: 'Fox News',
+          userName: 'Fox News',
           displayProfile: 'fox-news.jpg'
         },
         postedDate: '6th August 2020',
         header: 'Donald Trump to visit Kenosha amid unrest',
-        shortDescription: 'US President Donald Trump is to visit the city in Wisconsin which has seen widespread unrest ' +
+        description: 'US President Donald Trump is to visit the city in Wisconsin which has seen widespread unrest ' +
           'since a black man was shot in the back and seriously injured by a policeman ',
         commentsCount: 1,
         likesCount: 1

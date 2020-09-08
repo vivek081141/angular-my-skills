@@ -1,5 +1,12 @@
 
 <!--<app-my-feeds-body></app-my-feeds-body>-->
+
+
+<!-- TODO Alert should be in its own container -->
+<ngb-alert *ngIf="alert" type="secondary" (close)="alert = ''">
+  {{ alert }}
+</ngb-alert>
+
 <div class="container-fluid m-5">
   <app-all-feeds></app-all-feeds>
 </div>

@@ -6,19 +6,19 @@
   <div class="col-sm-7">
     <div class="card">
       <div class="card-header">
-        {{feed.user.username}}
+        {{feed.user.userName}}
         <span class="float-right">{{feed.postedDate}}</span>
       </div>
       <div class="card-body">
         <h5 class="card-title">{{feed.header}}</h5>
-        <p class="card-text">{{feed.shortDescription}}</p>
+        <p class="card-text">{{feed.description}}</p>
        <!-- <a class="btn btn-primary">More</a>-->
       </div>
       <div class="card-body">
         <a class="btn btn-default btn-success mr-1"  aria-label="Comments" (click)="clickComment()">
           <i class="fa fa-comment fa-fw" aria-hidden="true" ></i> {{feed.commentsCount}}
         </a>
-        <a class="btn btn-default btn-primary mr-1"  aria-label="Likes">
+        <a class="btn btn-default btn-primary mr-1"  aria-label="Likes" (click)="clickLike()">
           <i class="fa fa-thumbs-up  fa-fw" aria-hidden="true"></i> {{feed.likesCount}}
         </a>
         <a class="btn btn-default btn-secondary mr-1"  aria-label="Share">
@@ -26,7 +26,7 @@
         </a>
       </div>
       <div *ngIf="isCommentVisible">
-        <app-comments-card [comments]="feed.comments"></app-comments-card>
+        <app-comments-card [comments]="feed.commentList" [feed]="feed"></app-comments-card>
       </div>
     </div>
   </div>
