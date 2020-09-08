@@ -7,8 +7,21 @@
     <div class="card">
       <div class="card-header">
         {{feed.user.userName}}
-        <span class="float-right">{{feed.postedDate}}</span>
-      </div>
+        <span class="float-right">
+          {{feed.postedDate}}
+          <div *ngIf="isDeleteApplicable()" ngbDropdown class="d-inline-block">
+              <button class="btn btn-sm alert-secondary" id="dropdownBasic1" ngbDropdownToggle>
+                <i class="fa fa-list" aria-hidden="true" ></i>
+              </button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="">
+                <button class="btn btn-sm" ngbDropdownItem (click)="deleteFeed()">Delete</button>
+              </div>
+            </div>
+        </span>
+
+
+
+
       <div class="card-body">
         <h5 *ngIf="feed.header" class="card-title">{{feed.header}}</h5>
         <p class="card-text">{{feed.description}}</p>

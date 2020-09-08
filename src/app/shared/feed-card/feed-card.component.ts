@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Feed} from '../../models/Feed';
 import {FeedDataService} from '../../services/feed-data.service';
 import {AlertDataService} from '../../services/alert-data.service';
+import {EventDataService} from '../../services/event-data.service';
 
 @Component({
   selector: 'app-feed-card',
@@ -12,7 +13,8 @@ export class FeedCardComponent implements OnInit {
   @Input() feed: Feed;
   isCommentVisible: boolean;
 
-  constructor(private feedDataService: FeedDataService, private alertService: AlertDataService) {
+  constructor(private feedDataService: FeedDataService, private alertService: AlertDataService,
+              private eventService: EventDataService) {
   }
 
   ngOnInit(): void {
@@ -36,5 +38,24 @@ export class FeedCardComponent implements OnInit {
       },
       error => console.log(error)
     );
+  }
+
+  deleteFeed(): void {
+    console.log('deleting the feed');
+    this.feedDataService.deleteFeed(this.feed).subscribe(
+      next => {
+        this.alertService.publishAlertObservable('The feed has been deleted successfully.');
+        this.eventService.publishEvent('DELETED');
+
+      },
+      error => console.log(error)
+    );
+  }
+
+  isDeleteApplicable(): boolean {
+    if (this.feedDataService.getLoggedInUser() === this.feed.userId) {
+      return true;
+    }
+    return false;
   }
 }

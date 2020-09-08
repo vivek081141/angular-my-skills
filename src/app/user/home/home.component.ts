@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AlertDataService} from '../../services/alert-data.service';
-import {Subject} from "rxjs";
-import {debounceTime} from "rxjs/operators";
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',

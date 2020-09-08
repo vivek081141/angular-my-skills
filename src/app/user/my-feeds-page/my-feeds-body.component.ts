@@ -3,6 +3,8 @@ import {AlertDataService} from '../../services/alert-data.service';
 import {debounceTime} from 'rxjs/operators';
 import {FeedDataService} from '../../services/feed-data.service';
 import {Feed} from '../../models/Feed';
+import {EventDataService} from '../../services/event-data.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-my-feeds-body',
@@ -13,13 +15,16 @@ export class MyFeedsBodyComponent implements OnInit, OnDestroy {
   alert: string;
   error: string;
   feeds: Feed[] = [];
+  eventSubscription: Subscription;
 
-  constructor(private alertService: AlertDataService, private feedDataService: FeedDataService) {
+  constructor(private alertService: AlertDataService, private feedDataService: FeedDataService,
+              private eventDataService: EventDataService) {
   }
 
   ngOnInit(): void {
     this.initAlertSubscription();
     this.initMyFeeds();
+    this.eventChange();
   }
 
   /* posting a feed from the child component MyPostFormComponent */
@@ -61,8 +66,20 @@ export class MyFeedsBodyComponent implements OnInit, OnDestroy {
     );
   }
 
+  eventChange(): void {
+    this.eventSubscription = this.eventDataService.subscribeEvent().subscribe(next => {
+      console.log(next);
+      if (next === 'DELETED') {
+        this.feedDataService.getMyPosts(this.feedDataService.getLoggedInUser()).subscribe(
+          feeds => this.feeds = feeds,
+        );
+      }
+    });
+  }
+
   ngOnDestroy(): void {
     this.alertService.publishAlertObservable('');
+    this.eventSubscription.unsubscribe();
   }
 
 }
